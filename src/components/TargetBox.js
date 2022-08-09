@@ -1,10 +1,11 @@
 function TargetBox({ characters, handleListClick }) {
+  console.log("characters at targetBox", characters);
   return (
     <ul>
       {characters.map((char) => {
-        return (
-          <li key={char} onClick={handleListClick}>
-            {char}
+        return char.found ? null : (
+          <li key={char.name} onClick={handleListClick}>
+            {char.name}
           </li>
         );
       })}

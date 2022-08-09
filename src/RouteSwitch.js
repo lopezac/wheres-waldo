@@ -7,7 +7,7 @@ import Layout from "./components/Layout";
 
 function RouteSwitch() {
   return (
-    <BrowserRouter basename="/wheres-waldo">
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

@@ -1,15 +1,11 @@
 import { useParams, useOutletContext } from "react-router-dom";
-import {useState, useEffect} from "react";
-import {
-  collection,
-  query,
-  setDoc,
-  doc,
-  getDocs,
-  getDoc,
-} from "firebase/firestore";
+import { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
 
 import TargetBox from "../components/TargetBox";
+import ResetBtn from "../components/ResetBtn";
+import CharactersNav from "../components/CharactersNav";
+import Timer from "../components/Timer";
 
 function Game() {
   const mapName = useParams().mapName;
@@ -25,9 +21,19 @@ function Game() {
   }, []);
 
   useEffect(() => {
+    if (!mapData) return;
+    console.log("mapData", mapData);
     setCharactersName();
-    console.log("mapData ath useEffect", mapData);
   }, [mapData]);
+
+  useEffect(() => {
+    console.log("characters", characters);
+  }, [characters]);
+
+  function reset() {
+    setCharactersName();
+    setShowTargetBox(false);
+  }
 
   async function getData() {
     const docRef = doc(firebase.db(), "albums", mapName);
@@ -35,24 +41,30 @@ function Game() {
     return docSnap.data();
   }
 
-  async function checkPositionHitChar([x, y]) {
-    // const docData = await getData(docName);
+  function setCharactersName() {
+    setCharacters(
+      mapData.characters.map((char) => {
+        return { name: char.name, found: false };
+      })
+    );
+  }
+
+  function checkPositionHitChar([x, y]) {
     for (const char of mapData.characters) {
       const pos = char.position;
-      if (
-        x >= pos.x[0] &&
-        x <= pos.x[1] &&
-        y >= pos.y[0] &&
-        y <= pos.y[1]
-      ) {
+      if (x >= pos.x[0] && x <= pos.x[1] && y >= pos.y[0] && y <= pos.y[1]) {
         return char.name;
       }
     }
     return false;
   }
 
-  async function handlePhotoClick(e) {
-    toggleTargetBox();
+  function charactersFound() {
+    return characters.every((char) => char.found);
+  }
+
+  function handlePhotoClick(e) {
+    if (!charactersFound()) toggleTargetBox();
     const x = e.pageX - e.target.offsetLeft;
     const y = e.pageY - e.target.offsetTop;
     setClickPosition([x, y]);
@@ -62,26 +74,32 @@ function Game() {
     toggleTargetBox();
     const charName = e.target.textContent;
     const charHitted = await checkPositionHitChar(clickPosition);
-    if (charName === charHitted) console.log("corrrect");
+    if (charName === charHitted) removeCharacter(charName);
+  }
+
+  function removeCharacter(character) {
+    let tempCharacters = characters.slice();
+    for (let char of tempCharacters) {
+      if (char.name === character) char.found = true;
+    }
+    setCharacters(tempCharacters);
   }
 
   function toggleTargetBox() {
     setShowTargetBox(!showTargetBox);
   }
 
-  async function setCharactersName() {
-    // if (isEmpty(photo)) return;
-    // const docData = await getData();
-    console.log("mapData at setCharactersName", mapData);
-    setCharacters(mapData.characters.map((char) => char.name));
-  }
-
-      // <img onClick={handlePhotoClick} src={mapData.photo} alt={mapName} />
-      // {showTargetBox && (
-      //   <TargetBox characters={characters} handleListClick={handleListClick} />
-      // )}
   return (
     <div>
+      <Timer characters={characters} />
+      <CharactersNav mapName={mapName} characters={characters} />
+      {mapData && (
+        <img onClick={handlePhotoClick} src={mapData.photo} alt={mapName} />
+      )}
+      {showTargetBox && (
+        <TargetBox characters={characters} handleListClick={handleListClick} />
+      )}
+      {charactersFound() && <ResetBtn resetGame={reset} />}
     </div>
   );
 }
