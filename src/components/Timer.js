@@ -8,14 +8,12 @@ function Timer({ characters }) {
 
   useEffect(() => {
     if (!isActive) return;
-    // console.log("time: ", time);
     setTimeout(() => setTime(time + 1), 1000);
   }, [time, isActive]);
 
   useEffect(() => {
     if (!characters.length || !characters.every((char) => char.found)) return;
     setIsActive(false);
-    // console.log("time to found all was ", time, characters);
   }, [characters]);
 
   return (

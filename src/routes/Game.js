@@ -6,6 +6,7 @@ import TargetBox from "../components/TargetBox";
 import ResetBtn from "../components/ResetBtn";
 import CharactersNav from "../components/CharactersNav";
 import Timer from "../components/Timer";
+import { MapNameContext } from "../mapName-context";
 
 function Game() {
   const mapName = useParams().mapName;
@@ -91,15 +92,20 @@ function Game() {
 
   return (
     <div>
-      <Timer characters={characters} />
-      <CharactersNav mapName={mapName} characters={characters} />
-      {mapData && (
-        <img onClick={handlePhotoClick} src={mapData.photo} alt={mapName} />
-      )}
-      {showTargetBox && (
-        <TargetBox characters={characters} handleListClick={handleListClick} />
-      )}
-      {charactersFound() && <ResetBtn resetGame={reset} />}
+      <MapNameContext.Provider value={mapName}>
+        <Timer characters={characters} />
+        <CharactersNav characters={characters} />
+        {mapData && (
+          <img onClick={handlePhotoClick} src={mapData.photo} alt={mapName} />
+        )}
+        {showTargetBox && (
+          <TargetBox
+            characters={characters}
+            handleListClick={handleListClick}
+          />
+        )}
+        {charactersFound() && <ResetBtn resetGame={reset} />}
+      </MapNameContext.Provider>
     </div>
   );
 }

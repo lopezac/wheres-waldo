@@ -1,62 +1,40 @@
 import {
   collection,
-  getDocs,
+  doc,
   onSnapshot,
   orderBy,
   query,
 } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useOutletContext } from "react-router-dom";
+
+import { MapNameContext } from "../mapName-context";
 
 function Leaderboards() {
   const firebase = useOutletContext();
+  const mapName = useContext(MapNameContext);
+
   const [users, setUsers] = useState([]);
+  const [currentMap, setCurrentMap] = useState("beach-waldo");
 
   useEffect(() => {
     listenDatabase();
   }, []);
 
-  function formatName(name) {
-    return !name ? "Anonymous" : name;
-  }
-
   async function listenDatabase() {
-    const q = query(collection(firebase.db(), "leaderboards"), orderBy("time"));
+    const q = query(
+      collection(firebase.db(), `albums/${mapName}/leaderboards`),
+      orderBy("time")
+    );
     onSnapshot(q, (qSnap) => {
       const data = [];
       qSnap.forEach((doc) => data.push(doc.data()));
       setUsers(data);
+      console.log("data at listenDatabsae", data);
     });
   }
 
-  function getIndex(user) {
-    return users.indexOf(user) + 1;
-  }
-
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Place</th>
-          <th>Name</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        {!users.length
-          ? null
-          : users.map((user) => {
-              return (
-                <tr key={getIndex(user)}>
-                  <td>{getIndex(user)}</td>
-                  <td>{user.name}</td>
-                  <td>{user.time}</td>
-                </tr>
-              );
-            })}
-      </tbody>
-    </table>
-  );
+  return <div></div>;
 }
 
 export default Leaderboards;

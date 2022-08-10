@@ -1,11 +1,15 @@
-import { addDoc, collection } from "firebase/firestore";
-import { useState } from "react";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { useState, useContext } from "react";
 import { useOutletContext } from "react-router-dom";
 
+import { MapNameContext } from "../mapName-context";
+
 function LogTimeModal({ time }) {
+  const firebase = useOutletContext();
+  const mapName = useContext(MapNameContext);
+
   const [isOpen, setIsOpen] = useState(true);
   const [userName, setUserName] = useState("");
-  const firebase = useOutletContext();
 
   function handleClose() {
     setIsOpen(false);
@@ -17,7 +21,7 @@ function LogTimeModal({ time }) {
 
   async function handleSubmit() {
     handleClose();
-    await addDoc(collection(firebase.db(), "leaderboards"), {
+    await addDoc(collection(firebase.db(), `albums/${mapName}/leaderboards`), {
       name: userName,
       time: time,
     });
