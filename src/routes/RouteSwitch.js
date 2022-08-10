@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Game from "./routes/Game";
-import Home from "./routes/Home";
-import Leaderboards from "./routes/Leaderboards";
-import Layout from "./components/Layout";
+import Game from "./Game";
+import Home from "./Home";
+import Leaderboards from "./Leaderboards";
+import Layout from "../components/Layout";
 
 function RouteSwitch() {
   return (

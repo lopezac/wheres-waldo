@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { array } from "prop-types";
 
 import LogTimeModal from "./LogTimeModal";
 
@@ -23,5 +24,9 @@ function Timer({ characters }) {
     </div>
   );
 }
+
+Timer.propTypes = {
+  characters: array,
+};
 
 export default Timer;

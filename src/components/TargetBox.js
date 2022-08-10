@@ -1,5 +1,6 @@
+import { array, func } from "prop-types";
+
 function TargetBox({ characters, handleListClick }) {
-  console.log("characters at targetBox", characters);
   return (
     <ul>
       {characters.map((char) => {
@@ -12,5 +13,10 @@ function TargetBox({ characters, handleListClick }) {
     </ul>
   );
 }
+
+TargetBox.propTypes = {
+  characters: array,
+  handleListClick: func,
+};
 
 export default TargetBox;

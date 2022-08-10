@@ -1,6 +1,7 @@
+import { array } from "prop-types";
 import { useContext } from "react";
 
-import { MapNameContext } from "../mapName-context";
+import { MapNameContext } from "../contexts/mapName";
 
 function CharactersNav({ characters }) {
   const mapName = useContext(MapNameContext);
@@ -27,5 +28,9 @@ function CharactersNav({ characters }) {
     </nav>
   );
 }
+
+CharactersNav.propTypes = {
+  characters: array,
+};
 
 export default CharactersNav;

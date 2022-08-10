@@ -2,7 +2,7 @@ import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-import getInitialData from "../initialData";
+import getInitialData from "../utilities/initialData";
 import MapCard from "./MapCard";
 
 function Maps() {

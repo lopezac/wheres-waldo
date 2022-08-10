@@ -1,8 +1,9 @@
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { useState, useContext } from "react";
 import { useOutletContext } from "react-router-dom";
+import { number } from "prop-types";
 
-import { MapNameContext } from "../mapName-context";
+import { MapNameContext } from "../contexts/mapName";
 
 function LogTimeModal({ time }) {
   const firebase = useOutletContext();
@@ -44,5 +45,9 @@ function LogTimeModal({ time }) {
     </form>
   );
 }
+
+LogTimeModal.propTypes = {
+  time: number,
+};
 
 export default LogTimeModal;

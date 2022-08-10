@@ -1,7 +1,7 @@
 const maps = [
   {
     name: "street-waldo",
-    photo: "./assets/street-waldo.png",
+    photo: "./assets/street-waldo.jpg",
     characters: [
       { name: "Green Waldo", position: { x: [555, 627], y: [606, 795] } },
       { name: "Blonde Waldo", position: { x: [676, 716], y: [144, 229] } },

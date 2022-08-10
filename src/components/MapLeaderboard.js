@@ -1,3 +1,5 @@
+import { array } from "prop-types";
+
 function MapLeaderboard({ users }) {
   function formatName(name) {
     return !name ? "Anonymous" : name;
@@ -7,6 +9,8 @@ function MapLeaderboard({ users }) {
     return users.indexOf(user) + 1;
   }
 
+  if (!users.length) return <p>No best scores yet be the first!</p>;
+  
   return (
     <table>
       <thead>
@@ -17,20 +21,22 @@ function MapLeaderboard({ users }) {
         </tr>
       </thead>
       <tbody>
-        {!users.length
-          ? null
-          : users.map((user) => {
-              return (
-                <tr key={getIndex(user)}>
-                  <td>{getIndex(user)}</td>
-                  <td>{formatName(user.name)}</td>
-                  <td>{user.time}</td>
-                </tr>
-              );
-            })}
+        {users.map((user) => {
+          return (
+            <tr key={getIndex(user)}>
+              <td>{getIndex(user)}</td>
+              <td>{formatName(user.name)}</td>
+              <td>{user.time}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
+}
+
+MapLeaderboard.propTypes = {
+  users: array
 }
 
 export default MapLeaderboard;

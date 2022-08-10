@@ -6,7 +6,7 @@ import TargetBox from "../components/TargetBox";
 import ResetBtn from "../components/ResetBtn";
 import CharactersNav from "../components/CharactersNav";
 import Timer from "../components/Timer";
-import { MapNameContext } from "../mapName-context";
+import { MapNameContext } from "../contexts/mapName";
 
 function Game() {
   const mapName = useParams().mapName;

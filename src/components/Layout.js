@@ -2,13 +2,13 @@ import { Outlet } from "react-router-dom";
 
 import Footer from "./Footer";
 import TopNavbar from "./TopNavbar";
-import Firebase from "../firebase-func";
+import Firebase from "../contexts/firebase";
 
 function Layout() {
   return (
     <div>
       <TopNavbar />
-      <Outlet context={Firebase()}/>
+      <Outlet context={Firebase()} />
       <Footer />
     </div>
   );
