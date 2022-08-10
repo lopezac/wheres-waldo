@@ -11,7 +11,7 @@ function CharactersNav({ mapName, characters }) {
     <nav>
       {characters.map((char) => {
         return (
-          <div style={{ background: `${char.found ? "red" : "gray"}` }}>
+          <div>
             <img src={getImg(char.name)} alt={char.name} />
             <p>{char.name}</p>
           </div>
