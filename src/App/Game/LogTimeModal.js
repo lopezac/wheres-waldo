@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { useOutletContext } from "react-router-dom";
 import { number } from "prop-types";
 
-import { MapNameContext } from "../contexts/mapName";
+import { MapNameContext } from "./mapName-context";
 
 function LogTimeModal({ time }) {
   const firebase = useOutletContext();

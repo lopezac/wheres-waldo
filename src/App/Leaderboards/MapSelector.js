@@ -1,6 +1,6 @@
 import { func, array } from "prop-types";
 
-import { formatName } from "../utilities/formatUtils";
+import { formatName } from "../../shared/formatUtils";
 
 function MapSelector({ handleChange, maps }) {
   return (

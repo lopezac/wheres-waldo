@@ -1,7 +1,9 @@
 import { array } from "prop-types";
 import { useContext } from "react";
 
-import { MapNameContext } from "../contexts/mapName";
+import { MapNameContext } from "./mapName-context";
+import { MapImgIcon } from "../../shared/MapImg";
+import { NavImgs } from "./NavStyled";
 
 function CharactersNav({ characters }) {
   const mapName = useContext(MapNameContext);
@@ -16,16 +18,16 @@ function CharactersNav({ characters }) {
   if (!characters) return;
 
   return (
-    <nav>
+    <NavImgs>
       {characters.map((char) => {
         return (
           <div>
-            <img src={getImg(char.name)} alt={char.name} />
+            <MapImgIcon src={getImg(char.name)} alt={char.name} />
             <p>{char.name}</p>
           </div>
         );
       })}
-    </nav>
+    </NavImgs>
   );
 }
 

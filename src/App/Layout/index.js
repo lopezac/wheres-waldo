@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 
-import Footer from "./Footer";
-import TopNavbar from "./TopNavbar";
-import Firebase from "../contexts/firebase";
+import Footer from "../Footer/index";
+import TopNavbar from "../TopNavbar/index";
+import Firebase from "./firebase";
 
 function Layout() {
   return (

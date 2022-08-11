@@ -1,12 +1,7 @@
-import Maps from "../components/Maps";
+import HomeIndex from "../App/Home/index";
 
 function Home() {
-  return (
-    <div>
-      <h1>Select a map</h1>
-      <Maps />
-    </div>
-  );
+  return <HomeIndex />;
 }
 
 export default Home;
