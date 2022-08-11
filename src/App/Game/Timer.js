@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
 import { array } from "prop-types";
+import styled from "styled-components";
 
 import LogTimeModal from "./LogTimeModal";
+
+const TimerDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const TimePara = styled.p`
+  font-size: 3rem;
+`;
 
 function Timer({ characters }) {
   const [time, setTime] = useState(0);
@@ -18,10 +28,10 @@ function Timer({ characters }) {
   }, [characters]);
 
   return (
-    <div>
-      <p>{time}s</p>
+    <TimerDiv>
+      <TimePara>{time}s</TimePara>
       {!isActive && <LogTimeModal time={time} />}
-    </div>
+    </TimerDiv>
   );
 }
 

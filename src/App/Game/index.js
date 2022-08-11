@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 
 import ResetBtn from "./ResetBtn";
-import CharactersNav from "./CharactersNav";
-import Timer from "./Timer";
 import { MapNameContext } from "./mapName-context";
 import { allFound } from "../../shared/formatUtils";
 import MapImg from "./MapImg";
+import Header from "./Header";
 
 function GameIndex() {
   const mapName = useParams().mapName;
@@ -56,12 +55,10 @@ function GameIndex() {
     setCharacters(tempCharacters);
   }
 
-  // {/* <Header characters={characters} /> */}
   return (
     <div>
       <MapNameContext.Provider value={mapName}>
-        <Timer characters={characters} />
-        <CharactersNav characters={characters} />
+        <Header characters={characters} />
         {mapData && (
           <MapImg
             removeCharacter={removeCharacter}
