@@ -2,6 +2,8 @@ import { array } from "prop-types";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import CharIcon from "./CharIcon";
+
 const NavImgs = styled.nav`
   display: flex;
   column-gap: 15px;
@@ -15,11 +17,10 @@ const NavItem = styled.div`
   justify-items: center;
 `;
 
-const MapImgIcon = styled.img`
-  width: 70px;
-  height: 70px;
-  padding-top: 15px;
-`;
+// const MapIconFounded = styled(MapImgIcon)`
+//   background-color: blue;
+//   border: 2px solid yellow;
+// `;
 
 const ParaNav = styled.p`
   font-size: 1rem;
@@ -43,7 +44,7 @@ function CharactersNav({ characters }) {
       {characters.map((char) => {
         return (
           <NavItem>
-            <MapImgIcon src={getImg(char.name)} alt={char.name} />
+            <CharIcon imgPath={getImg(char.name)} name={char.name} founded={char.found} />
             <ParaNav>{char.name}</ParaNav>
           </NavItem>
         );

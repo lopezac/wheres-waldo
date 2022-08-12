@@ -4,7 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import styled from "styled-components";
 
 import ResetBtn from "./ResetBtn";
-import { GameOverContext } from "./gameOver-context";
+import { ResetTimeContext } from "./resetTime-context";
 import { allFound } from "../../shared/formatUtils";
 import MapImg from "./MapImg";
 import Header from "./Header";
@@ -22,6 +22,7 @@ function GameIndex() {
 
   const [characters, setCharacters] = useState([]);
   const [mapData, setMapData] = useState(null);
+  const [timeEnd, setTimeEnd] = useState(false);
 
   useEffect(() => {
     getData().then((data) => setMapData(data));
@@ -33,7 +34,7 @@ function GameIndex() {
 
   function reset() {
     setCharactersName();
-    // reset timer
+    setTimeEnd(!timeEnd);
   }
 
   async function getData() {
@@ -51,7 +52,6 @@ function GameIndex() {
   }
 
   function removeCharacter(character) {
-    console.log("removeCharacter run");
     let tempCharacters = characters.slice();
     for (let char of tempCharacters) {
       if (char.name === character) char.found = true;
@@ -61,7 +61,7 @@ function GameIndex() {
 
   return (
     <GameDiv>
-      <GameOverContext.Provider value={mapName}>
+      <ResetTimeContext.Provider value={timeEnd}>
         <Header characters={characters} />
         {mapData && (
           <MapImg
@@ -71,7 +71,7 @@ function GameIndex() {
           />
         )}
         {allFound(characters) && <ResetBtn resetGame={reset} />}
-      </GameOverContext.Provider>
+      </ResetTimeContext.Provider>
     </GameDiv>
   );
 }

@@ -1,10 +1,9 @@
 import { addDoc, collection } from "firebase/firestore";
-import { useState, useContext } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useState } from "react";
+import { useOutletContext, useParams } from "react-router-dom";
 import { number } from "prop-types";
 import styled from "styled-components";
 
-import { MapNameContext } from "./gameOver-context";
 import FormBtns from "./FormBtns";
 import FormInput from "./FormInput";
 
@@ -30,7 +29,7 @@ const Title = styled.h3`
 
 function LogTimeModal({ time }) {
   const firebase = useOutletContext();
-  const mapName = useContext(MapNameContext);
+  const mapName = useParams().mapName;
 
   const [isOpen, setIsOpen] = useState(true);
   const [userName, setUserName] = useState("");
