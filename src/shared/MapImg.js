@@ -2,25 +2,31 @@ import styled from "styled-components";
 
 export const MapImgCard = styled.img`
   width: 390px;
+  height: 390px;
 
   @media (max-width: 1200px) {
     width: 450px;
+    height: 450px;
   }
 
   @media (max-width: 992px) {
     width: 370px;
+    height: 370px;
   }
 
   @media (max-width: 768px) {
     width: 550px;
+    height: 550px;
   }
 
   @media (max-width: 576px) {
     width: 400px;
+    height: 400px;
   }
 
   @media (max-width: 320px) {
     width: 300px;
+    height: 300px;
   }
 `;
 
@@ -45,6 +51,6 @@ export const MapGameImg = styled.img`
 
   @media (min-width: 1200px) {
     width: 1150px;
-    height: 900px;
+    height: 800px;
   }
 `;

@@ -7,7 +7,7 @@ function MapSelector({ handleChange, maps }) {
     <select onChange={handleChange}>
       {maps.map((map) => {
         return (
-          <option key={map.id} value={map}>
+          <option key={map} value={map}>
             {formatName(map)}
           </option>
         );

@@ -1,11 +1,13 @@
+import { PageDiv } from "../../shared/PageDiv";
+import { TitleH1 } from "../../shared/Title";
 import Maps from "./Maps";
 
 function HomeIndex() {
   return (
-    <div>
-      <h1>Select a map</h1>
+    <PageDiv>
+      <TitleH1>Select a map</TitleH1>
       <Maps />
-    </div>
+    </PageDiv>
   );
 }
 

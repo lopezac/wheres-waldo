@@ -7,6 +7,8 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { LeaderboardDiv } from "../../shared/PageDiv";
+import { TitleH1 } from "../../shared/Title";
 
 import MapLeaderboard from "./MapLeaderboard";
 import MapSelector from "./MapSelector";
@@ -19,7 +21,10 @@ function LeaderboardsIndex() {
   const [currentMap, setCurrentMap] = useState(null);
 
   useEffect(() => {
-    getMaps().then((result) => setMaps(result));
+    getMaps().then((result) => {
+      setMaps(result);
+      setCurrentMap(result[0]);
+    });
   }, []);
 
   useEffect(() => {
@@ -52,10 +57,11 @@ function LeaderboardsIndex() {
   }
 
   return (
-    <div>
+    <LeaderboardDiv>
+      <TitleH1>Leaderboards</TitleH1>
       <MapSelector maps={maps} handleChange={handleChange} />
       <MapLeaderboard users={users} />
-    </div>
+    </LeaderboardDiv>
   );
 }
 

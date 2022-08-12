@@ -9,6 +9,18 @@ import { theme } from "../Layout/theme";
 const Main = styled.main`
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+`;
+
+const StyledOutlet = styled.div`
+  grid-area: content;
 `;
 
 function Layout() {
@@ -16,7 +28,9 @@ function Layout() {
     <ThemeProvider theme={theme}>
       <Main>
         <TopNavbar />
-        <Outlet context={Firebase()} />
+        <StyledOutlet>
+          <Outlet context={Firebase()} />
+        </StyledOutlet>
         <Footer />
       </Main>
     </ThemeProvider>

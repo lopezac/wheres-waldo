@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-export default function TopNavbar() {
+const StyledNavbar = styled.nav`
+  grid-area: header;
+`;
+
+function TopNavbar() {
   return (
-    <div>
+    <StyledNavbar>
       <Link to="/">Home</Link>
       <Link to="/leaderboards">Leaderboards</Link>
-    </div>
+    </StyledNavbar>
   );
 }
+
+export default TopNavbar;

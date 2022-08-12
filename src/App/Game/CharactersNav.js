@@ -15,12 +15,8 @@ const NavItem = styled.div`
   flex-direction: column;
   align-items: center;
   justify-items: center;
+  opacity: ${(props) => (props.found ? 0.7 : 1)};
 `;
-
-// const MapIconFounded = styled(MapImgIcon)`
-//   background-color: blue;
-//   border: 2px solid yellow;
-// `;
 
 const ParaNav = styled.p`
   font-size: 1rem;
@@ -43,8 +39,8 @@ function CharactersNav({ characters }) {
     <NavImgs>
       {characters.map((char) => {
         return (
-          <NavItem>
-            <CharIcon imgPath={getImg(char.name)} name={char.name} founded={char.found} />
+          <NavItem found={char.found}>
+            <CharIcon imgPath={getImg(char.name)} name={char.name} />
             <ParaNav>{char.name}</ParaNav>
           </NavItem>
         );

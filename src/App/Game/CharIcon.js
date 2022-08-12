@@ -1,4 +1,4 @@
-import { string, bool } from "prop-types";
+import { string } from "prop-types";
 import styled from "styled-components";
 
 const MapImgIcon = styled.img`
@@ -7,7 +7,7 @@ const MapImgIcon = styled.img`
   padding-top: 15px;
 `;
 
-function CharIcon({imgPath, name, founded}) {
+function CharIcon({ imgPath, name }) {
   return (
     <div>
       <MapImgIcon src={imgPath} alt={name} />
@@ -18,7 +18,6 @@ function CharIcon({imgPath, name, founded}) {
 CharIcon.propTypes = {
   imgPath: string,
   name: string,
-  founded: bool
 };
 
 export default CharIcon;

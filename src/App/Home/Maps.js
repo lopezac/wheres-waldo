@@ -44,7 +44,7 @@ function Maps() {
   return (
     <MapsDiv>
       {maps.map((map) => {
-        return <MapCard name={map.name} imgPath={map.img} />;
+        return <MapCard key={map.name} name={map.name} imgPath={map.img} />;
       })}
     </MapsDiv>
   );
