@@ -2,8 +2,31 @@ import { addDoc, collection } from "firebase/firestore";
 import { useState, useContext } from "react";
 import { useOutletContext } from "react-router-dom";
 import { number } from "prop-types";
+import styled from "styled-components";
 
-import { MapNameContext } from "./mapName-context";
+import { MapNameContext } from "./gameOver-context";
+import FormBtns from "./FormBtns";
+import FormInput from "./FormInput";
+
+const StyledForm = styled.form(
+  ({ theme }) => `
+  display: flex;
+  flex-direction: column;
+  background-color: ${theme.strongRed};
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 5px;
+`
+);
+
+const Title = styled.h3`
+  align-self: center;
+  font-size: 1.5rem;
+  margin: 0 0 0 0;
+`;
 
 function LogTimeModal({ time }) {
   const firebase = useOutletContext();
@@ -31,18 +54,11 @@ function LogTimeModal({ time }) {
   if (!isOpen) return null;
 
   return (
-    <form>
-      <label htmlFor="userName">
-        Enter your name to save your score to leaderboards
-      </label>
-      <input type="text" name="name" id="userName" onInput={handleInput} />
-      <button type="submit" onClick={handleSubmit}>
-        Send
-      </button>
-      <button type="button" onClick={handleClose}>
-        Close
-      </button>
-    </form>
+    <StyledForm>
+      <Title htmlFor="userName">Save score</Title>
+      <FormInput handleInput={handleInput} />
+      <FormBtns handleClose={handleClose} handleSubmit={handleSubmit} />
+    </StyledForm>
   );
 }
 

@@ -2,5 +2,6 @@ export const theme = {
   lightRed: "#EF4444",
   strongRed: "#EF4444",
   white: "#FAFAF9",
-  blue: "#2563EB"
-}
+  darkBlue: "#2c407b",
+  darkZinc: "#18181B",
+};

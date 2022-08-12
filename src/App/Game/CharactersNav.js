@@ -1,8 +1,6 @@
 import { array } from "prop-types";
-import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-
-import { MapNameContext } from "./mapName-context";
 
 const NavImgs = styled.nav`
   display: flex;
@@ -29,7 +27,7 @@ const ParaNav = styled.p`
 `;
 
 function CharactersNav({ characters }) {
-  const mapName = useContext(MapNameContext);
+  const mapName = useParams().mapName;
 
   function getImg(charName) {
     return `./assets/${mapName}-${charName

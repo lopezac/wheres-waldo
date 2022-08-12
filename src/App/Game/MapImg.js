@@ -1,21 +1,23 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import { allFound } from "../../shared/formatUtils";
 import { MapGameImg } from "../../shared/MapImg";
 import TargetBox from "./TargetBox";
-import { MapNameContext } from "./mapName-context";
 import { MapCardDiv } from "../../shared/MapDiv";
+import { useParams } from "react-router-dom";
 
 function MapImg({ characters, mapData, removeCharacter }) {
   const [clickPosition, setClickPosition] = useState([]);
+  const [targetBoxPos, setTargetBoxPos] = useState([]);
   const [showTargetBox, setShowTargetBox] = useState(false);
 
-  const mapName = useContext(MapNameContext);
+  const mapName = useParams().mapName;
 
   function handlePhotoClick(e) {
     if (!allFound(characters)) toggleTargetBox();
     const x = getXFromImg(e);
     const y = getYFromImg(e);
+    setTargetBoxPos([e.pageX, e.pageY]);
     setClickPosition([x, y]);
   }
 
@@ -64,7 +66,11 @@ function MapImg({ characters, mapData, removeCharacter }) {
         />
       )}
       {showTargetBox && (
-        <TargetBox characters={characters} handleListClick={handleListClick} />
+        <TargetBox
+          characters={characters}
+          handleListClick={handleListClick}
+          position={targetBoxPos}
+        />
       )}
     </MapCardDiv>
   );

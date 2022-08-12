@@ -1,10 +1,12 @@
 import { func } from "prop-types";
 
+import { Btn } from "../../shared/Button";
+
 function ResetBtn({ resetGame }) {
   return (
-    <button type="submit" onClick={resetGame}>
+    <Btn type="submit" onClick={resetGame}>
       Reset
-    </button>
+    </Btn>
   );
 }
 

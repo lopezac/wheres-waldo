@@ -3,21 +3,25 @@ import styled from "styled-components";
 import CharactersNav from "./CharactersNav";
 import Timer from "./Timer";
 
-const StyledHeader = styled.header(({theme}) => `
+const StyledHeader = styled.header(
+  ({ theme }) => `
   display: flex;
   justify-content: center;
   background-color: ${theme.lightRed};
   color: ${theme.white};
   border-radius: 10px;
-`);
+  column-gap: 20px;
+  padding: 5px 50px;
+`
+);
 
-function Header({characters}) {
+function Header({ characters }) {
   return (
     <StyledHeader>
       <CharactersNav characters={characters} />
       <Timer characters={characters} />
     </StyledHeader>
-  )
+  );
 }
 
 export default Header;

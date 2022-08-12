@@ -1,12 +1,20 @@
 import { useParams, useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
+import styled from "styled-components";
 
 import ResetBtn from "./ResetBtn";
-import { MapNameContext } from "./mapName-context";
+import { GameOverContext } from "./gameOver-context";
 import { allFound } from "../../shared/formatUtils";
 import MapImg from "./MapImg";
 import Header from "./Header";
+
+const GameDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+`;
 
 function GameIndex() {
   const mapName = useParams().mapName;
@@ -23,13 +31,9 @@ function GameIndex() {
     if (mapData) setCharactersName();
   }, [mapData]);
 
-  useEffect(() => {
-    console.log("characters", characters);
-  }, [characters]);
-
   function reset() {
     setCharactersName();
-    // setShowTargetBox(false);
+    // reset timer
   }
 
   async function getData() {
@@ -56,8 +60,8 @@ function GameIndex() {
   }
 
   return (
-    <div>
-      <MapNameContext.Provider value={mapName}>
+    <GameDiv>
+      <GameOverContext.Provider value={mapName}>
         <Header characters={characters} />
         {mapData && (
           <MapImg
@@ -67,8 +71,8 @@ function GameIndex() {
           />
         )}
         {allFound(characters) && <ResetBtn resetGame={reset} />}
-      </MapNameContext.Provider>
-    </div>
+      </GameOverContext.Provider>
+    </GameDiv>
   );
 }
 
