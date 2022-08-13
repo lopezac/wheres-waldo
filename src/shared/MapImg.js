@@ -44,13 +44,8 @@ export const MapGameImg = styled.img`
     height: 750px;
   }
 
-  @media (min-width: 992px) {
-    width: 950px;
-    height: 950px;
-  }
-
-  @media (min-width: 1200px) {
-    width: 1150px;
-    height: 800px;
+  @media (min-width: 1600px) {
+    width: 850px;
+    height: 850px;
   }
 `;

@@ -39,7 +39,7 @@ function CharactersNav({ characters }) {
     <NavImgs>
       {characters.map((char) => {
         return (
-          <NavItem found={char.found}>
+          <NavItem key={char.name} found={char.found}>
             <CharIcon imgPath={getImg(char.name)} name={char.name} />
             <ParaNav>{char.name}</ParaNav>
           </NavItem>

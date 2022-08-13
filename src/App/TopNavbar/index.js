@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { NavbarLink, StyledNavbar } from "../../shared/Navbar";
 
-const StyledNavbar = styled.nav`
+const Navbar = styled(StyledNavbar)`
   grid-area: header;
 `;
 
 function TopNavbar() {
   return (
-    <StyledNavbar>
-      <Link to="/">Home</Link>
-      <Link to="/leaderboards">Leaderboards</Link>
-    </StyledNavbar>
+    <Navbar>
+      <NavbarLink to="/">Home</NavbarLink>
+      <NavbarLink to="/leaderboards">Leaderboards</NavbarLink>
+    </Navbar>
   );
 }
 

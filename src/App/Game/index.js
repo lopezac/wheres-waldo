@@ -14,6 +14,7 @@ const GameDiv = styled.div`
   flex-direction: column;
   align-items: center;
   row-gap: 10px;
+  padding: 30px 0;
 `;
 
 function GameIndex() {

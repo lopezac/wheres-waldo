@@ -1,10 +1,23 @@
 import { func, array } from "prop-types";
+import styled from "styled-components";
 
 import { formatName } from "../../shared/formatUtils";
 
+const Select = styled.select(
+  ({ theme }) => `
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 1.5rem;
+    background-color: ${theme.darkBlue};
+    color: ${theme.white};
+    cursor: pointer;
+`
+);
+
 function MapSelector({ handleChange, maps }) {
   return (
-    <select onChange={handleChange}>
+    <Select onChange={handleChange}>
       {maps.map((map) => {
         return (
           <option key={map} value={map}>
@@ -12,7 +25,7 @@ function MapSelector({ handleChange, maps }) {
           </option>
         );
       })}
-    </select>
+    </Select>
   );
 }
 

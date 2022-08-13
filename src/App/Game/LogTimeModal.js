@@ -11,7 +11,7 @@ const StyledForm = styled.form(
   ({ theme }) => `
   display: flex;
   flex-direction: column;
-  background-color: ${theme.strongRed};
+  background-color: ${theme.lightRed};
   position: fixed;
   top: 50%;
   left: 50%;

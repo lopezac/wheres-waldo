@@ -19,9 +19,12 @@ const Main = styled.main`
   height: 100vh;
 `;
 
-const StyledOutlet = styled.div`
+const StyledOutlet = styled.div(
+  ({ theme }) => `
   grid-area: content;
-`;
+  background-color: ${theme.lighterZinc};
+`
+);
 
 function Layout() {
   return (
